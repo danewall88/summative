@@ -1,0 +1,20 @@
+body{
+	background-color:#181323;
+}
+
+img.logo {
+	width: 120px;
+	padding-top: 30px;
+    padding-left: 50px;
+}
+
+img.menu {
+	width:30px;
+	float: right;
+	padding-top: 30px;
+    padding-right: 50px;
+}
+
+.nav-bar{
+	width:100%;
+}
