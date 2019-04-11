@@ -7,13 +7,49 @@
 </head>
 <body>
 
-	<header class="nav-bar">
+	<header id="navbar">
 		<img class="logo" src="assets/roam-logo.png">
 		<img class="menu" src="assets/roam-hamburger-menu.png">
 	</header>
 
+	<div class="main-container">
+
+		<!-- <div class="designer-heading">
+			<h1 class="meet">Meet the</h1>
+			<h2 class="tribe"></h2>
+		</div> -->
+
+		<div class="row-one">
+			<img class="image" src="img/image-one.png">
+			<img class="image" src="img/image-two.png">
+		</div>
+		<div class="row-two">
+			<img class="image" src="img/image-three.png">
+			<img class="image" src="img/image-four.png">
+		</div>
+		<div class="row-three">
+			<img class="image" src="img/image-five.png">
+			<img class="image" src="img/image-six.png">
+		</div>
+	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/script.js"></script>
+
+	<script>
+		window.onscroll = function() {myFunction()};
+
+		var navbar = document.getElementById("navbar");
+		var sticky = navbar.offsetTop;
+
+		function myFunction() {
+		  if (window.pageYOffset >= sticky) {
+		    navbar.classList.add("sticky")
+		  } else {
+		    navbar.classList.remove("sticky");
+		  }
+		}
+	</script>
 
 	
 </body>

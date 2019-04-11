@@ -1,20 +1,51 @@
 body{
 	background-color:#181323;
 }
-
 img.logo {
 	width: 120px;
 	padding-top: 30px;
     padding-left: 50px;
 }
-
 img.menu {
 	width:30px;
 	float: right;
 	padding-top: 30px;
     padding-right: 50px;
 }
-
-.nav-bar{
-	width:100%;
+.row-one {
+	text-align:center;
+}
+.row-two {
+	text-align:center;
+}
+.row-three {
+	text-align:center;
+}
+.row-one .image {
+	width:550px;
+	padding-right: 40px;
+    padding-top: 90px;
+    padding-left:40px;
+}
+.row-two .image {
+	width:550px;
+	padding-right: 40px;
+    padding-top: 90px;
+    padding-left:40px;
+}
+.row-three .image {
+	width:550px;
+	padding-right: 40px;
+    padding-top: 90px;
+    padding-left:40px;
+}
+#navbar {
+  width:100%;
+  overflow: hidden;
+  background-color: #181323;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
