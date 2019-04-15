@@ -1,83 +1,152 @@
-var key = '9uzrs7VpfguqgaX5evogUGwxsjAQeOTa';	
+	window.onscroll = function() {myFunction()};
+
+		var navbar = document.getElementById("navbar");
+		var sticky = navbar.offsetTop;
+
+		function myFunction() {
+		  if (window.pageYOffset >= sticky) {
+		    navbar.classList.add("sticky")
+		  } else {
+		    navbar.classList.remove("sticky");
+		  }
+		}
+
+
+
+
+
+
+
+	var key = '9uzrs7VpfguqgaX5evogUGwxsjAQeOTa';	
 	var behanceUser = 'TAK-Design'; 				
 
 	var urlProjects = 'https://api.behance.net/v2/users/' + behanceUser + '/projects?client_id=' + key;
 
-	// var designersList = {[
-	// 	{
-	// 	img: 'img/image-one.png',
-	// 	quote: 'insert quote one'
-	// 	}
-	// 	{
-	// 	img:'img/image-two.png',
-	// 	quote: 'insert quote two'
-	// 	}
-	// 	{
-	// 	img: 'img/image-three.png',
-	// 	quote: 'insert quote three'
-	// 	}
-	// 	{
-	// 	img: 'img/image-four.png',
-	// 	quote: 'insert quote four'
-	// 	}
-	// 	{
-	// 	img: 'img/image-five.png',
-	// 	quote: 'insert quote five'
-	// 	}
-	// 	{
-	// 	img: 'img/image-six.png',
-	// 	quote: 'insert quote six'
-	// 	}
-	// 	]}
 
-	// 	if($('#').length > 0) {
+		if($('#project').length > 0) {
+		var pageURL = new URL(document.location);
+		var params = pageURL.searchParams;
+		var id = params.get('id');
+		if (id) {
+			var urlProjects = 'http://www.behance.net/v2/projects/' + id + '?api_key=' + key;
+		}
+		$.ajax({
+			url: urlProjects,
+			dataType: 'jsonp',
+			beforeSend: function(res) {
+				$('<div class="pre-loader"> ... loading portfolio ... </div>').prependTo('body');
+			},
+			success: function(res) {
+				console.log(res);
+				$('.pre-loader').detach();
+				var projects = res.projects;
+				// https://www.behance.net/dev/api/endpoints/1
+				projects.forEach(function(project) {
+					$('<li id="list-item">' + '<h4>' + project.name + '</h4>' + '<img src="' + project.covers.original + '"><a class="button" style="display:block" href="project.html?id=' + project.id + '">See more</a></li>').appendTo('div.project-container');
+				});
+			},
+			error: function(res) {
+				$('<h1> Error!! </h1>').appendTo('body');
+			}
+		}); 
 
-		
+	} // END HOMEPAGE template
 
-	// 	// AJAX request for PROJECT INFO
-	// 	$.ajax({
+// ================================== PROJECT PAGE TEMPLATE ====================================================================
 
-	// 		url: urlProjects,
-	// 		dataType: 'jsonp',
+	// If the ID #project has been rendered on the page, then run this code
+	if($('#project').length > 0) {
+ 
+		var pageURL = new URL(document.location);
+		var params = pageURL.searchParams;
+		var id = params.get('id');
+		var urlProject = 'http://www.behance.net/v2/projects/' + id + '?api_key=' + key;
 
-	// 		// let's show a little preloader to the user while they wait for a nice User Experience
-	// 		beforeSend: function(res) {
-	// 								$('<div class="pre-loader"> ... loading portfolio ... </div>').prependTo('body');
-	// 		},
+		// AJAX request
+		$.ajax({
 
-	// 		// when the ajax request is complete do all of these things
-	// 		success: function(res) {
+			url: urlProject,
+			dataType: 'jsonp',
 
-	// 			console.log(res);
+			// let's show a little preloader to the user while they wait for a nice User Experience
+			beforeSend: function(res){
+				$('<div class="pre-loader"> ... loading behance project ... </div>').prependTo('body');
+			},
 
-	// 			// Success! We can get rid of the preloader now...
-	// 			$('.pre-loader').detach();
+			// when the ajax request is complete do all of these things
+			success: function(res) {
 
-	// 			var projects = res.projects;
+				// Success! We can get rid of the preloader now...
+				$('.pre-loader').detach();
 
-	// 			// https://www.behance.net/dev/api/endpoints/1
-	// 			projects.forEach(function(project) {
-	// 				$('<li>' + '<h4>' + project.name + '</h4>' + '<img src="' + project.covers.original + '"><a href="project.html?id=' + project.id + '">See more</a></li>').appendTo('ul.projects');
-	// 			});
-	// 		},
+				console.log(res);
 
-	// 		// if the ajax request fails do these things as a fallback
-	// 		error: function(res) {
-	// 			$('<h1> Error!! </h1>').appendTo('body');
-	// 		}
+				var project = res.project;
 
-	// 	}); // END ajax request
+				// show the project details like this
+				$('<h1>' + project.name +'</h1>').appendTo('.main-container');
+				$('<h2>' + 'views ' + project.stats.views +'</h2>').appendTo('.main-container');
+				$('<h2>' + 'appreciations ' + project.stats.appreciations +'</h2>').appendTo('.main-container');
+				$('<h2>' + 'comments ' + project.stats.comments +'</h2>').appendTo('.main-container');
+				$('<p>' + project.description + '</p>').appendTo('.main-container');
+				// using Moment JS for clean and easy to use time format
+				// https://momentjs.com/docs/#/displaying/fromnow/
+				// https://momentjs.com/docs/#/displaying/unix-timestamp/
+				$('<h3>' + '<small>published:</small>' + moment.unix(project.published_on).fromNow() + '</h3>').appendTo('.main-container');
+				$('<img src="' + project.covers.original + '">').appendTo('.main-container');
+			},
 
-	// 	var urlUser = 'https://api.behance.net/v2/users/' + behanceUser + '?client_id=' + key;
+			// if the ajax request fails do these things as a fallback
+			error: function(res) {
+				$('<h1> Error!! </h1>').appendTo('body');
 
-	// 	// AJAX request for USER INFO
-	// 	$.ajax({
-	// 		url: urlUser,
-	// 		dataType: 'jsonp',
-	// 		success: function(res) {
-	// 			var user = res.user;
-	// 			$('<h1>List of Behance projects for ' + user.first_name + ' ' + user.last_name + '</h1>').prependTo('body');
-	// 		}
-	// 	}); // END ajax request
+			}
 
-	// } // END HOMEPAGE template
+
+
+		}); 
+
+
+		// https://api.behance.net/v2/fields?client_id=1234567890 // 
+		var urlCreativeFields = 'https://api.behance.net/v2/fields?client_id=' + key;
+
+		$.ajax({
+			url: urlCreativeFields,
+			dataType: 'jsonp',
+			success: function(res) {
+
+				// fields[20].name
+				$('<h1>' + res.fields[20].name +'</h1>').appendTo('.drawing-container');
+				$('<h1>' + res.popular[11].name +'</h1>').appendTo('.drawing-container');
+
+				if (res.popular[11].name === 'potatoes') { 
+					$('<h1>' + res.popular[11].name +'</h1>').appendTo('.drawing-container');
+				}
+
+				else if (res.popular[10].name === 'UI/UX') {
+					$('body').css('background-color', 'red');
+				}
+			
+			console.log(res);	
+			}
+		}); // END ajax request
+
+		var urlUserFollowing = 'http://www.behance.net/v2/users/TAK-Design/following?client_id=' + key + '&per_page=1';
+
+		$.ajax({
+			url: urlUserFollowing,
+			dataType: 'jsonp',
+			success: function(res) {
+			var following = res.following;				
+			following.forEach(function(userFollowers) {
+				// console.log(userFollowers);
+				$('<li>' + userFollowers.first_name +'</li>').appendTo('.user-followers');
+				});
+			
+			console.log(res);	
+			}
+		}); // END ajax request
+
+	}
+
+

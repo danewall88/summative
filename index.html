@@ -5,10 +5,10 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body id="home">
 
 	<header id="navbar">
-		<img class="logo" src="assets/roam-logo.png">
+		<a href="index.html"><img class="logo" src="assets/roam-logo.png"></a>
 		<img class="menu" src="assets/roam-hamburger-menu.png">
 	</header>
 
@@ -18,39 +18,53 @@
 			<h1 class="meet">Meet the</h1>
 			<h2 class="tribe"></h2>
 		</div> -->
-
-		<div class="row-one">
-			<img class="image" src="img/image-one.png">
-			<img class="image" src="img/image-two.png">
+	<div id="designer-list">
+		<div id="row-one">
+			<a href="project.html"><img id="image" src="img/image-one.png"></a>
+			<a href="project.html"><img id="image" src="img/image-two.png"></a>
 		</div>
-		<div class="row-two">
-			<img class="image" src="img/image-three.png">
-			<img class="image" src="img/image-four.png">
+		<div id="row-two">
+			<a href="project.html"><img id="image" src="img/image-three.png"></a>
+			<a href="project.html"><img id="image" src="img/image-four.png"></a>
 		</div>
-		<div class="row-three">
-			<img class="image" src="img/image-five.png">
-			<img class="image" src="img/image-six.png">
+		<div id="row-three">
+			<a href="project.html"><img id="image" src="img/image-five.png"></a>
+			<a href="project.html"><img id="image" src="img/image-six.png"></a>
+		</div>
 		</div>
 	</div>
 
+	
+
+<!-- 	<div id="designer-list">
+		<div id="row-one">
+			<a href="project.html"><img id="image" src="img/image-one.png"></a>
+			<a href="project.html"><img id="image" src="img/image-two.png"></a>
+		</div>
+		<div id="row-two">
+			<img id="image" src="img/image-three.png">
+			<img id="image" src="img/image-four.png">
+		</div>
+		<div id="row-three">
+			<img id="image" src="img/image-five.png">
+			<img id="image" src="img/image-six.png">
+		</div>
+		</div>
+	</div> -->
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/script.js"></script>
 
-	<script>
-		window.onscroll = function() {myFunction()};
-
-		var navbar = document.getElementById("navbar");
-		var sticky = navbar.offsetTop;
-
-		function myFunction() {
-		  if (window.pageYOffset >= sticky) {
-		    navbar.classList.add("sticky")
-		  } else {
-		    navbar.classList.remove("sticky");
-		  }
-		}
-	</script>
-
-	
 </body>
+<footer class="footer">
+	  <div class="left-row-footer">
+		<img src="img/roam-logo.png">
+		<h4>Home / Our Work / Services / Contact Us</h4>
+		<h5>hello @weareroam.com<br>0800937626</h5>
+	  </div>
+	  <div class="right-row-footer">
+		<img class="footer-icons" src="img/social-media-icons.png">
+		<h5>2019 Roam Creative Ltd</h5>
+	  </div>
+	</footer>
 </html>
