@@ -42,11 +42,11 @@
 				var projects = res.projects;
 				// https://www.behance.net/dev/api/endpoints/1
 				projects.forEach(function(project) {
-					$('<li id="list-item">' + '<h4>' + project.name + '</h4>' + '<img src="' + project.covers.original + '"><a class="button" style="display:block" href="project.html?id=' + project.id + '">See more</a></li>').appendTo('div.project-container');
+					$('<li id="list-item">' + '<h4 class:"title">' + project.name + '</h4>' + '<img src="' + project.covers.original + '"><a class="button" style="display:block" href="project.html?id=' + project.id + '">View Project</a></li>').appendTo('div.project-container');
 				});
 			},
 			error: function(res) {
-				$('<h1> Error!! </h1>').appendTo('body');
+				alert('Sorry, there\'s an error!');
 			}
 		}); 
 
@@ -56,15 +56,14 @@
 
 	// If the ID #project has been rendered on the page, then run this code
 	if($('#project').length > 0) {
- 
+ 	
 		var pageURL = new URL(document.location);
 		var params = pageURL.searchParams;
 		var id = params.get('id');
 		var urlProject = 'http://www.behance.net/v2/projects/' + id + '?api_key=' + key;
-
+		if (id) {
 		// AJAX request
 		$.ajax({
-
 			url: urlProject,
 			dataType: 'jsonp',
 
@@ -84,27 +83,27 @@
 				var project = res.project;
 
 				// show the project details like this
-				$('<h1>' + project.name +'</h1>').appendTo('.main-container');
-				$('<h2>' + 'views ' + project.stats.views +'</h2>').appendTo('.main-container');
-				$('<h2>' + 'appreciations ' + project.stats.appreciations +'</h2>').appendTo('.main-container');
-				$('<h2>' + 'comments ' + project.stats.comments +'</h2>').appendTo('.main-container');
-				$('<p>' + project.description + '</p>').appendTo('.main-container');
+				$('<h1 class="project-title">' + project.name +'</h1>').appendTo('.project-container');
+				$('<h2 class="project-views">' + 'views ' + project.stats.views +'</h2>').appendTo('.project-container');
+				$('<h2 class="project-appreciations">' + 'appreciations ' + project.stats.appreciations +'</h2>').appendTo('.project-container');
+				$('<h2 class="project-comments">' + 'comments ' + project.stats.comments +'</h2>').appendTo('.project-container');
+				$('<p class="project-description">' + ' " ' + project.description +  ' " ' +'</p>').appendTo('.project-container');
 				// using Moment JS for clean and easy to use time format
 				// https://momentjs.com/docs/#/displaying/fromnow/
 				// https://momentjs.com/docs/#/displaying/unix-timestamp/
-				$('<h3>' + '<small>published:</small>' + moment.unix(project.published_on).fromNow() + '</h3>').appendTo('.main-container');
-				$('<img src="' + project.covers.original + '">').appendTo('.main-container');
+				$('<h3>' + '<small>published:</small>' + moment.unix(project.published_on).fromNow() + '</h3>').appendTo('.project-container');
+				$('<img class="project-image" src="' + project.covers.original + '">').appendTo('.image-container');
 			},
 
 			// if the ajax request fails do these things as a fallback
 			error: function(res) {
-				$('<h1> Error!! </h1>').appendTo('body');
-
+				alert('Sorry, there\'s an error!');
+				console.log(res);
 			}
-
-
-
 		}); 
+			
+		}
+
 
 
 		// https://api.behance.net/v2/fields?client_id=1234567890 // 

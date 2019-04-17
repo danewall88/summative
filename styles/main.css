@@ -2,7 +2,6 @@ body{
 	background-color:#181323;
 	
 }
-
 img.logo {
 	width: 120px;
 	padding-top: 30px;
@@ -22,6 +21,7 @@ img.menu {
 }
 #row-three {
 	text-align:center;
+  padding-bottom:100px;
 }
 #row-one #image {
 	width:550px;
@@ -41,14 +41,12 @@ img.menu {
     padding-top: 90px;
     padding-left:40px;
 }
-
 #image:hover {
  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px; 
 }
-
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -92,14 +90,12 @@ img.menu {
 	text-align: center;
 	font-family: arial;
 }
-
 /*#list-item:hover {
  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px; 
 }*/
-
 #list-item {
 	width:30%; 
 	float:left;
@@ -110,8 +106,9 @@ img.menu {
 }*/
 footer {
   width: 100%;
-  height: 150px;  
+  height: 250px;  
   background-color:white;
+  clear:both;
 }
 .right-row-footer {
 	float:right;
@@ -126,23 +123,91 @@ footer {
 	width:50%;
 	float:left;
 }
-
 div.project-container img {
 	width: 360px;
     height: 270px;
 }
-
 .project-container {
 	text-align:center;
 	width:100%;
     padding-top: 100px
-
-/*.button {
-	display: block;
-    border: 1px solid red;
+ }
+a.button {
     margin-left: 150px;
     margin-right: 150px;
     margin-top: 30px;
     border-radius: 40px;
     height: 30px;
+    text-decoration: none;
+    color: #181323;
+    font-family: montserrat;
+    font-size: 13px;
+    line-height: 28px;
+    background-color: white;
+    font-weight: bold;
+}
+li#list-item {
+  list-style: none;
+  margin-bottom: 80px;
+}
+h4 {
+    color: white;
+    font-family: montserrat;
+    font-size: 20px;
+    font-weight: lighter;
+}
+/*img.project-image {
+    float: right;
+    width: 40%;
+    margin-right: 15%;
+}
+div.project-container {
+    float: left;
+    width:100%;
+    text-align: left;
+    margin-right: 15;
+    margin-left: 5%;
+}
+h1.project-title {
+    font-family: montserrat;
+    color: white;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 20px;
+    margin-bottom:40px;
+}
+h2.project-views {
+    font-family: montserrat;
+    color: white;
+    text-align: left;
+    padding-bottom: 10px;
+}
+h2.project-appreciations {
+    font-family: montserrat;
+    color: white;
+    text-align: left;
+    padding-bottom: 10px;
+}
+h2.project-comments {
+    font-family: montserrat;
+    color: white;
+    text-align: left;
+    padding-bottom: 10px;
+}
+p.project-description {
+    font-family: montserrat;
+    color: white;
+    text-align: center;
+    font-weight: italic;
+    font-style: italic;
+    margin-top: 50px;
+    font-size: 15px;
+}
+h3{
+  font-family: montserrat;
+  font-weight: lighter;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 150px;
 }*/
